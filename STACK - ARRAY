@@ -1,0 +1,137 @@
+/ stack list //
+#include<stdio.h>
+#include<stdlib.h>
+#define SIZE 5
+int A[SIZE];
+int top = -1;
+void PUSH();
+void POP();
+void isempty();
+void isfull();
+void lenght();
+void display();
+void peek();
+int main()
+{
+	int ch;
+	while(1)
+	{
+		printf("\n Options : 1.PUSH \n 2.POP \n 3.check if empty\n 4.check if full \n 5.Lenght of the list \n 6.Display\n 7.PEEK\n 8.Exit\n");
+		printf("\nenter your choice\n");
+		scanf("%d",&ch);
+		switch(ch)
+		{
+			case 1: printf("\n Push \n");
+				PUSH();
+				break;
+			case 2: printf("\n Pop \n");
+				POP();
+				break;
+			case 3: printf("Check whether empty \n");
+				isempty();
+				break;
+			case 4: printf("Check whether full \n");
+				isfull();
+				break;
+			case 5: printf("Lenght is : \n");
+				lenght();
+				break;
+			case 6: printf("\nDisplaying the contents \n");
+				display();
+				break;
+			case 7: peek();
+				break;
+			case 8: exit(0);
+		}
+	}
+	return 0;
+}
+void isfull()
+{
+        if(top == SIZE - 1)
+        {
+                printf("\nFULL\n");
+        }
+        else
+        {
+                printf("\n NOT FULL\n");
+        }
+}
+void isempty()
+{
+        if(top == -1)
+        {
+                printf("\nEMPTY\n");
+        }
+        else
+        {
+                printf("\n NOT EMPTY\n");
+        }
+}
+
+void PUSH()
+{
+	int x;
+	printf("\nEnter element to be added\n");
+	scanf("%d",&x);
+	if(top == SIZE - 1)
+	{
+		printf("\nInsertion not Possible!\n");
+	}
+	else
+	{
+		A[top + 1] = x;
+		top++;
+	}
+}
+void POP()
+{
+	if (top == -1)
+	{
+		printf("\nDeletion not possible\n");
+	}
+	else
+	{
+		printf("Deleting %d element \n",A[top]);
+		top--;
+	}
+}
+void display()
+{
+	int i;
+	if(top == -1)
+	{
+		printf("\n Nothing to display in stack\n");
+	}
+	else
+	{
+		printf("\n Elements in the stack are : \n");
+		for(i = top;i>=0;--i)
+		{
+			printf("%3d",A[i]);
+		}
+	}
+}
+void lenght()
+{
+	int count = 0,i;
+	if(top >= 0)
+	{
+		for(i=top;i>=0;--i)
+		{
+			count++;
+		}
+	}
+	printf("\nTHE LENGHT IS  %d\n",count);
+}
+void peek()
+{
+	if(top == -1)
+	{
+		printf("\nStack is empty\n");
+	}
+	else
+	{
+		printf("Current position is %d",A[top-1]);
+	}
+}
