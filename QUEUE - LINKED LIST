@@ -1,0 +1,132 @@
+/ queue operations using linked list //
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct node
+{
+        int data;
+        struct node *next;
+}node;
+node *rear = NULL;
+node *front = NULL;
+node *getnode();
+void Enqueue();
+void Dequeue();
+void display();
+void lenght();
+void main()
+{
+        int ch;
+        while(1)
+        {
+                printf("\n OPtions : 1.Insert \n  2.Delete \n 3.Display \n 4.Lenght \n 5.Exit\n");
+                printf("Enter your choice\n");
+                scanf("%d",&ch);
+                switch(ch)
+                {
+                        case 1:printf("Inserting \n");
+                               Enqueue();
+                               break;
+                        case 2:printf("DEleting \n");
+                               Dequeue();
+                               break;
+                        case 3:printf("Displaying\n");
+                               display();
+                               break;
+                        case 4:printf("Lenght is \n");
+                               lenght();
+                                break;
+                        case 5:exit(0);
+                }
+        }
+}
+node *getnode()
+{
+        node *new = (node*)malloc(sizeof(node));
+        printf("Enter the data \n");
+        scanf("%d",&new->data);
+        new->next = NULL;
+        return new;
+}
+void Enqueue()
+{
+         node *ptr;
+        int item;
+        ptr = (node*)malloc(sizeof(node));
+        if(ptr == NULL)
+        {
+                printf("\nOverflow\n");
+        }
+        else
+        {
+                printf("\n Enter any value\n");
+                scanf("%d",&item);
+                ptr -> data = item;
+                if( front == NULL)
+                {
+                        front = ptr;
+                        rear = ptr;
+                        front -> next = NULL;
+                        rear -> next = NULL;
+                }
+                else
+                {
+                        rear -> next = ptr;
+                        rear = ptr;
+                        rear->next = NULL;
+                }
+        }
+}
+void Dequeue()
+{
+        node *ptr;
+        if ( front == NULL)
+        {
+                printf("Underflow\n");
+        }
+        else
+        {
+                ptr = front;
+                front = front -> next;
+                free(ptr);
+        }
+}
+void display()
+{
+        node *ptr;
+        ptr = front;
+        if (front == NULL)
+        {
+                printf("Queue is Empty\n");
+        }
+        else
+        {
+                printf("The Queue is \n");
+                while(ptr != NULL)
+                {
+                        printf("%d\n",ptr->data);
+                        ptr = ptr->next;
+                }
+        }
+ void lenght()
+{
+        int count = 0;
+        node *ptr;
+        ptr = front;
+        if ( front == NULL)
+        {
+                printf("Queue is empty \n");
+        }
+        else
+        {
+                printf("Lenght is : \n");
+                while( ptr != NULL)
+                {
+                        count++;
+                        ptr = ptr -> next;
+                }
+        }
+        printf("\n Lenght is : %d\n",count);
+}
+
+
+                              
