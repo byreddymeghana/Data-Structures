@@ -1,0 +1,145 @@
+/ Insertion operations on linked list
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct node
+{
+	int data;
+	struct node *next;
+}node;
+node *head = NULL;
+node *temp = NULL;
+node *getnode();
+void insert_beg();
+void insert_end();
+void insert_atpos(int);
+void display();
+int lenght();
+void delete();
+void main()
+{
+	int ch;
+	int pos;
+	while(1)
+	{
+	printf("\noptions : 1.Insert at beginning\n 2.Insert at end\n 3.Insert at pos k 4.Display the contents\n");
+	printf("\n 5.Lenght of the list\n 6.delete \n  7.EXIT\n");
+	printf("Enter your option\n");
+	scanf("%d",&ch);
+	switch(ch)
+	{
+		case 1:
+			printf("Inserting at the beginning\n");
+			insert_beg();
+			break;
+	        case 2:
+			printf("Inserting at the end\n");
+			insert_end();
+			break;
+		case 3:
+			printf("Inserting at particular position \n");
+			printf("Enter at particular position : \n");
+			scanf("%d",&pos);
+			insert_atpos(pos);
+			break;
+		case 4:
+			if(head == NULL)
+			{
+				printf("\nThe list does not exist : \n");
+			}
+			else
+			{
+				printf("\n list is given as : \n");
+				display();
+			}
+			break;
+		case 5:
+			int n;
+			n = lenght();
+			printf("\nLenght of the linked list is : %d  \n",n);
+			break;
+		case 6:
+			int m;
+			printf("enter  be deleted : \n");
+                        scanf("%d",&m);
+			printf("After deletion : \n");
+			delete();
+			break;
+		case 7: exit(0);
+	}
+	}
+}
+node *getnode()
+{
+	node *new = (node*)malloc(sizeof(node));
+	printf("Enter the data : \n");
+	scanf("%d",&new->data);
+	new->next = NULL;
+	return new;
+}
+void insert_beg()
+{
+	node *new = getnode();
+	if(head == NULL)
+	{
+		temp = NULL;
+	}
+		new -> next = head;
+		head = new;
+	}
+void insert_end()
+{
+	node *temp = head;
+	node*new = getnode();
+	if(head == NULL)
+	{
+		head = new;
+		temp = new;
+	}
+	else
+	{
+		temp -> next = new;
+		temp = new;
+	}
+}
+int lenght()
+{
+	node *temp = head;
+	int count = 0;
+	while(temp != NULL)
+	{
+		temp = temp->next;
+		count++;
+	}
+	return count;
+}
+void insert_atpos(int k)
+{
+	int i;
+	node *new = getnode();
+	temp = head;
+	for(i=0;i<k-1;i++)
+	{
+		temp  = temp -> next;
+	}
+	       	new->next = temp->next;
+		temp->next = new;
+}
+void display()
+{
+	node *curr;
+	curr = head;
+	while(curr != NULL)
+	{
+		printf("%d   ",curr->data);
+		curr = curr->next;
+	}
+}
+void delete()
+{
+	node * temp1;
+	temp1 = head;
+	head = head -> next;
+	temp1 -> next = NULL;
+	free(temp1);
+}
+
