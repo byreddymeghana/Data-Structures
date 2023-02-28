@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include<stdlib.h>
+void bubbleSort(int array[], int size) {
+for (int i= 0; i < size ; i++) {
+for (int j = i; j < size; j++) {
+if (array[i] > array[j]) {
+int temp = array[i];
+array[i] = array[j];
+array[j] = temp;
+}
+}
+}
+}
+void insertionSort(int array[], int size) {
+for (int i= 0; i < size ; i++) {
+for (int j = i-1; j >=0; j--) {
+if (array[j] > array[j+1]) {
+int temp = array[j];
+array[j] = array[j+1];
+array[j+1] = temp;
+}
+}
+}
+}
+void selectionSort(int array[], int size) {
+for (int i= 0; i < size ; i++) {
+int min=i;
+for (int j = i+1; j < size; j++) {
+if (array[j] < array[min]) {
+min=j;
+}
+}
+int temp=array[i];
+array[i]=array[min];
+array[min]=temp;
+}
+}
+int main() {
+int arr[20],n,i,ch;
+printf("Enter number of elements in array:");
+scanf("%d",&n);
+printf("Enter elements of array:");
+for(i=0;i<n;i++)
+{
+scanf("%d",&arr[i]);
+}
+printf("1.BUBBLE SORT\n2.INSERTION SORT\n3.SELECTION SORT\n4.EXIT");
+while(1){
+printf("\nENTER YOUR CHOICE : ");
+scanf("%d",&ch);
+switch(ch){
+case 1: printf("elements of array after bubble sorting");
+bubbleSort(arr,n);
+for(i=0;i<n;i++){
+printf("%d ",arr[i]);
+}
+break;
+case 2:printf("elements of array after insertionsorting");
+insertionSort(arr,n);
+for(i=0;i<n;i++){
+printf("%d\t",arr[i]);
+}
+break;
+case 3:printf("elements of array after selection sorting");
+selectionSort(arr,n);
+for(i=0;i<n;i++){
+printf("%d\t",arr[i]);
+}}
+break;
+case 4:exit(0);
+}
+}
+
+
+
+}
+
